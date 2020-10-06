@@ -11,7 +11,7 @@ USTRUCT(BlueprintType, Category = "Tam|Math") //2d line with start point and end
 struct FTamLine2D {
 	GENERATED_BODY()
 
-	FTamLine2D() {
+		FTamLine2D() {
 	}
 
 public:
@@ -19,6 +19,7 @@ public:
 		FVector2D startPoint;
 	UPROPERTY(BlueprintReadWrite, Category = "Tam|Math")
 		FVector2D endPoint;
+
 };
 
 
@@ -26,7 +27,7 @@ USTRUCT(BlueprintType, Category = "Tam|Math") //2d rectangle aligh with XY
 struct FTamRectangle2D {
 	GENERATED_BODY()
 
-	FTamRectangle2D() {
+		FTamRectangle2D() {
 	}
 
 public:
@@ -40,6 +41,21 @@ public:
 		float height;
 };
 
+USTRUCT(BlueprintType, Category = "Tam|Math") //a box in 3d world, position based on box's center
+struct FTamWorldBox {
+	GENERATED_BODY()
+	
+		FTamWorldBox() {
+		}
+
+public:
+	UPROPERTY(BlueprintReadWrite, Category = "Tam|Math") //center position of box
+		FVector position;
+	UPROPERTY(BlueprintReadWrite, Category = "Tam|Math") //rotation of box
+		FRotator rotation;
+	UPROPERTY(BlueprintReadWrite, Category = "Tam|Math") //half size of this box
+		FVector extent;
+};
 
 UCLASS()
 class TEST06_API ATamMath : public AActor {
@@ -61,7 +77,7 @@ public:
 		static bool isPointInside2Points(FVector2D point1, FVector2D point2, FVector2D destPoint);
 
 	UFUNCTION(BlueprintCallable, Category = "Tam|Math") //move line with distance
-		static FTamLine2D line2DAddVector(FTamLine2D line, FVector2D distance);
+		static UPARAM(DisplayName = "New Line") FTamLine2D line2DAddVector(FTamLine2D line, FVector2D distance);  //return new line
 
 
 
