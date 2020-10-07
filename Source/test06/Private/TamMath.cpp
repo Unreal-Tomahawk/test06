@@ -40,3 +40,10 @@ FTamLine2D ATamMath::line2DAddVector(FTamLine2D line, FVector2D distance) {
 	return result;
 }
 
+UPARAM(DisplayName = "New Line")FTamLine ATamMath::moveLine(FTamLine line, FVector distance) {
+	FTamLine result;
+	result.startPoint = line.startPoint + distance;
+	result.endPoint = line.endPoint + distance;
+	return result;
+}
+
