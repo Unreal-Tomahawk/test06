@@ -23,10 +23,15 @@ void ATamMath::Tick(float DeltaTime) {
 }
 
 bool ATamMath::isPointInside2Points(FVector2D point1, FVector2D point2, FVector2D destPoint) {
-	if (destPoint.X > std::max(point1.X, point2.X)) return false;
-	if (destPoint.X < std::min(point1.X, point2.X)) return false;
-	if (destPoint.Y > std::max(point1.Y, point2.Y)) return false;
-	if (destPoint.Y < std::min(point1.Y, point2.Y)) return false;
+	float dx = abs(point1.X - point2.X);
+	float dy = abs(point1.Y - point2.Y);
+	if (dx > dy) {
+		if (destPoint.X > std::max(point1.X, point2.X)) return false;
+		if (destPoint.X < std::min(point1.X, point2.X)) return false;
+	} else {
+		if (destPoint.Y > std::max(point1.Y, point2.Y)) return false;
+		if (destPoint.Y < std::min(point1.Y, point2.Y)) return false;
+	}
 	return true;
 }
 
